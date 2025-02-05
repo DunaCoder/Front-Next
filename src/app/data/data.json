@@ -1,0 +1,123 @@
+{
+    "slider": [
+      { "imagen": "/1.png" },
+      { "imagen": "/2.png" },
+      { "imagen": "/3.png" }
+    ],
+    "provisión_proveedores": [
+      {
+        "ID_provessor": 101,
+        "Nombre_Prov": "TecnoGlobal",
+        "Nº_de_tienda": 15,
+        "Localización": "Madrid",
+        "Fundación": "2010-05-20"
+      },
+      {
+        "ID_provessor": 102,
+        "Nombre_Prov": "AnimeWorld",
+        "Nº_de_tienda": 8,
+        "Localización": "Barcelona",
+        "Fundación": "2015-11-12"
+      }
+    ],
+    "productos": [
+      {
+        "ID_productor": 1001,
+        "Nombre": "PlayStation 5",
+        "Descripción": "Consola de última generación",
+        "Precio": 499.99,
+        "Stock": 50,
+        "Categoría": "Tecnología",
+        "ID_provessor": 101,
+        "Nombre_Prov": "TecnoGlobal",
+        "Imagen": "/ps5.webp",
+        "slug": "/productos/producto-1"
+      },
+      {
+        "ID_productor": 1002,
+        "Nombre": "Figura Spy x Family - Yor Forger",
+        "Descripción": "Figura coleccionable de 30 cm",
+        "Precio": 89.99,
+        "Stock": 200,
+        "Categoría": "Anime/Manga",
+        "ID_provessor": 102,
+        "Nombre_Prov": "AnimeWorld",
+        "Imagen": "/yorForge.webp",
+         "slug": "/productos/producto-1"
+      },
+      {
+        "ID_productor": 1003,
+        "Nombre": "Samsung Galaxy S23",
+        "Descripción": "Smartphone Android con 256GB",
+        "Precio": 999.00,
+        "Stock": 120,
+        "Categoría": "Tecnología",
+        "ID_provessor": 101,
+        "Nombre_Prov": "TecnoGlobal",
+        "Imagen": "/Samsung Galaxy S23.webp",
+         "slug": "/productos/producto-1"
+      },
+      {
+        "ID_productor": 1004,
+        "Nombre": "Chaqueta Cuero Unisex",
+        "Descripción": "Chaqueta de cuero genuino",
+        "Precio": 199.50,
+        "Stock": 75,
+        "Categoría": "Ropa",
+        "ID_provessor": 102,
+        "Nombre_Prov": "AnimeWorld",
+        "Imagen": "/Chaqueta Cuero Unisex.webp",
+         "slug": "/productos/producto-1"
+      }
+    ],
+    "usuarios": [
+        {
+            "ID_usuario": 1,
+            "nombre_usuario": "admin",
+            "contraseña": "admin",
+            "email": "admi@admin.com"
+          },
+      {
+        "ID_usuario": 2,
+        "nombre_usuario": "juan_perez",
+        "contraseña": "abc123",
+        "email": "juan@mail.com"
+      },
+      {
+        "ID_usuario": 3,
+        "nombre_usuario": "ana_gomez",
+        "contraseña": "xyz789",
+        "email": "ana@mail.com"
+      }
+    ],
+    "pedidos": [
+      {
+        "ID_pedido": 5001,
+        "Fecha_pedido": "2023-10-05",
+        "Estado_pedido": "Entregado",
+        "ID_usuario": 1
+      },
+      {
+        "ID_pedido": 5002,
+        "Fecha_pedido": "2023-10-06",
+        "Estado_pedido": "En proceso",
+        "ID_usuario": 2
+      }
+    ],
+    "líneas_de_pedido": [
+      {
+        "ID_fines_pedido": 7001,
+        "ID_pedido": 5001,
+        "ID_productor": 1001,
+        "Cantidad": 1,
+        "Precio_unitario": 499.99
+      },
+      {
+        "ID_fines_pedido": 7002,
+        "ID_pedido": 5002,
+        "ID_productor": 1002,
+        "Cantidad": 2,
+        "Precio_unitario": 89.99
+      }
+    ]
+  }

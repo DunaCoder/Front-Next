@@ -10,7 +10,7 @@ import { BsTiktok } from 'react-icons/bs';
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white pt-12 pb-8 mt-20">
+    <footer className="bg-black text-white pt-12 pb-8 ">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           

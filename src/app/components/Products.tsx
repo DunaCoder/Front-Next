@@ -18,7 +18,7 @@ const Products = () => {
     key={product.ID_productor}
     className="group w-full relative overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl"
   >
-    <Link href={`/productos/${product.slug}`} className="block h-full w-full">
+    <Link href={`/productos/${product.ID_productor}`} className="block h-full w-full">
       {/* Contenedor de la imagen con relación de aspecto */}
       <div className="relative m-2  transition-transform duration-300 group-hover:scale-105 aspect-square">
         <Image

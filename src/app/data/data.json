@@ -21,10 +21,17 @@
       }
     ],
     "productos": [
-      {
+    {
         "ID_productor": 1001,
         "Nombre": "PlayStation 5",
         "Descripción": "Consola de última generación",
+        "caracteristicas": [
+            "Consola de videojuegos de última generación con soporte 4K",
+            "Incluye mando DualSense con retroceso háptico",
+            "Disco SSD de alta velocidad 825GB",
+            "Compatibilidad con Ray Tracing y 120 fps",
+            "Diseño futurista con dos versiones: con lector y digital"
+        ],
         "Precio": 499.99,
         "Stock": 50,
         "Categoría": "Tecnología",
@@ -32,43 +39,66 @@
         "Nombre_Prov": "TecnoGlobal",
         "Imagen": "/ps5.webp",
         "slug": "/productos/producto-1"
-      },
-      {
+    },
+    {
         "ID_productor": 1002,
         "Nombre": "Figura Spy x Family - Yor Forger",
         "Descripción": "Figura coleccionable de 30 cm",
-        "Precio": 89.99,
+        "caracteristicas": [
+            "Figura de alta calidad con detalles ultrarrealistas",
+            "Material PVC premium pintado a mano",
+            "Base especial con temática del anime",
+            "Pose dinámica característica del personaje",
+            "Edición limitada con certificado de autenticidad"
+        ],
+        "Precio": 59.99,
         "Stock": 200,
         "Categoría": "Anime/Manga",
         "ID_provessor": 102,
         "Nombre_Prov": "AnimeWorld",
         "Imagen": "/yorForge.webp",
-         "slug": "/productos/producto-1"
-      },
-      {
+        "slug": "/productos/producto-1"
+    },
+    {
         "ID_productor": 1003,
         "Nombre": "Samsung Galaxy S23",
         "Descripción": "Smartphone Android con 256GB",
+        "caracteristicas": [
+            "Pantalla Dynamic AMOLED 2X de 6.1 pulgadas",
+            "Procesador Snapdragon 8 Gen 2 optimizado",
+            "Cámara triple de 50MP con estabilización óptica",
+            "Resistencia IP68 y vidrio Gorilla Glass Victus 2",
+            "Batería inteligente de 3900mAh con carga rápida",
+            "Soporte para 5G y WiFi 6E"
+        ],
         "Precio": 999.00,
         "Stock": 120,
         "Categoría": "Tecnología",
         "ID_provessor": 101,
         "Nombre_Prov": "TecnoGlobal",
         "Imagen": "/Samsung Galaxy S23.webp",
-         "slug": "/productos/producto-1"
-      },
-      {
+        "slug": "/productos/producto-1"
+    },
+    {
         "ID_productor": 1004,
         "Nombre": "Chaqueta Cuero Unisex",
         "Descripción": "Chaqueta de cuero genuino",
+        "caracteristicas": [
+            "Cuero 100% genuino de primera calidad",
+            "Forro interior suave y transpirable",
+            "Cremalleras reforzadas y puños ajustables",
+            "Diseño clásico con múltiples bolsillos funcionales",
+            "Disponible en tallas S-XXL",
+            "Resistente al agua y al frío"
+        ],
         "Precio": 199.50,
         "Stock": 75,
         "Categoría": "Ropa",
         "ID_provessor": 102,
         "Nombre_Prov": "AnimeWorld",
         "Imagen": "/Chaqueta Cuero Unisex.webp",
-         "slug": "/productos/producto-1"
-      }
+        "slug": "/productos/producto-1"
+    }
     ],
     "usuarios": [
         {

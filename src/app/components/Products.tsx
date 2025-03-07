@@ -46,7 +46,7 @@ const Products = () => {
             <p className="text-sm text-gray-500 line-through">${product.Precio}</p>
           )}
         </div>
-        <button className="mt-3 w-full rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700">
+        <button className="mt-3 w-full rounded-lg bg-black px-4 py-2 text-sm font-medium text-white hover:text-gray-300">
           Ver Detalles
         </button>
       </div>

@@ -6,7 +6,9 @@ import { FaUser, FaChevronDown } from "react-icons/fa";
 import Link from 'next/link'
 
 const Nav = () => {
-  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false)
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
   
   // Datos de ejemplo para categorías
   const categories = [
@@ -15,6 +17,11 @@ const Nav = () => {
     { name: 'Moda', subcategories: ['Ropa Mujer', 'Ropa Hombre', 'Accesorios'] },
     { name: 'Deportes', subcategories: ['Fútbol', 'Fitness', 'Camping'] },
   ]
+
+    const cartItems = [
+    { id: 1, name: 'Zapatos Deportivos', price: 59.99, quantity: 1, image: 'https://via.placeholder.com/80' },
+    { id: 2, name: 'Camiseta Premium', price: 29.99, quantity: 2, image: 'https://via.placeholder.com/80' },
+  ];
 
   return (
     <nav className="bg-black relative">
@@ -45,7 +52,10 @@ const Nav = () => {
               <span className="hidden sm:inline">Mi Cuenta</span>
             </Link>
             
-            <button className="p-2.5 text-white hover:bg-gray-800 rounded-md transition-colors relative flex items-center gap-1">
+            <button 
+            onMouseEnter={() => setIsCartOpen (true)}
+            onClick={() => setIsCartOpen(!isCartOpen)}
+            className="p-2.5 text-white hover:bg-gray-800 rounded-md transition-colors relative flex items-center gap-1">
               <FiShoppingCart className="text-xl" />
               <span className="hidden sm:inline">Carrito</span>
               <span className="absolute -top-1 -right-1 bg-red-500 text-xs w-5 h-5 rounded-full flex items-center justify-center">
@@ -54,6 +64,20 @@ const Nav = () => {
             </button>
           </div>
         </div>
+{/* pestaña de carrito */}
+{isCartOpen && (
+  <div className="absolute right-0 bg-white p-4 text-black">
+    <h3>Carrito de Compras</h3>
+    <ul>
+      {cartItems.map((item) => (
+        <li key={item.id}>
+          {item.name} - ${item.price}
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
+  
 
         {/* Barra de categorías */}
         <div className="mt-4 border-t border-gray-800 pt-4">
@@ -74,8 +98,8 @@ const Nav = () => {
               {isCategoriesOpen && (
                 <div onMouseEnter={() => setIsCategoriesOpen(true)} 
                 onMouseLeave={() => setIsCategoriesOpen(false)}
-                className="absolute z-50 top-full left-0 w-[800px] bg-black border border-gray-800 rounded-lg shadow-xl p-6 mt-2">
-                  <div className="grid grid-cols-2 gap-6">
+                className="absolute z-50 top-full left-0 sm:w-[800px] w-[200px]  bg-black border border-gray-800 rounded-lg shadow-xl p-6 mt-2">
+                  <div className="grid  sm:grid-cols-2 grid-cols-1 gap-6">
                     {categories.map((category) => (
                       <div key={category.name} className="group">
                         <h3 className="text-white font-medium mb-2 border-b border-gray-700 pb-1">

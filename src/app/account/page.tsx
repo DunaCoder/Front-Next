@@ -18,7 +18,7 @@ const LoginPage: NextPage = () => {
     <div
     className="h-screen flex items-center justify-center relative m-0"
     style={{
-      backgroundImage: "url('/3.png')", // Cambia esto por la ruta de tu imagen
+      backgroundImage: "url('/8.webp')", // Cambia esto por la ruta de tu imagen
       backgroundSize: 'cover',
       backgroundPosition: 'center',
     }}

@@ -4,12 +4,12 @@ import Products from "./components/Products"
 
 export default function Home() {
   const images = [
-    { id: 1, src: "3.png", type: 'vertical' },
-    { id: 2, src: "2.png", type: 'vertical' },
-    { id: 3, src: "1.png", type: 'vertical' },
-    { id: 4, src: "3.png", type: 'vertical'},
-    { id: 5, src: "1.png", type: 'wide' },
-    { id: 6, src: "2.png", type: 'wide'},
+    { id: 1, src: "1.webp", type: 'vertical' },
+    { id: 2, src: "2.webp", type: 'vertical' },
+    { id: 3, src: "5.webp", type: 'vertical' },
+    { id: 4, src: "8.webp", type: 'vertical'},
+    { id: 5, src: "6.webp", type: 'wide' },
+    { id: 6, src: "7.webp", type: 'wide'},
 
   ];
   return (

@@ -1,8 +1,31 @@
+'use client';
 import Carousel from "./components/Carousel";
 import Image from "next/image";
 import Products from "./components/Products"
+import { getProductos } from "../../lib/api";
+import type { Producto } from "../../lib/api";
+import { useEffect, useState } from 'react';
 
 export default function Home() {
+  const [products, setProducts] = useState<Producto[]>([]);
+  const [error, setError] = useState<string>('');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await getProductos();
+        setProducts(data);
+      } catch (err) {
+        console.error('Error fetching products:', err);
+        setError('Error al cargar los productos');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []); 
+
   const images = [
     { id: 1, src: "1.webp", type: 'vertical' },
     { id: 2, src: "2.webp", type: 'vertical' },
@@ -42,8 +65,14 @@ export default function Home() {
 
       </div>
     </div>
-
-    <Products/>
+    </div>
+    <div className='my-10 mx-0 text-center text-xl capitalize font-bold '>
+        <h2>Seguro que te gusta</h2>
+        { loading ? (
+          <p>Cargando productos...</p>
+        ) : (
+          <Products products={products} error={error} />
+        )}
     </div>
     </div>
   );

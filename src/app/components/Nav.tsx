@@ -133,7 +133,7 @@ const Nav = () => {
               Nuevo
             </button>
             <button className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-800 transition-colors">
-              Colecciones
+              Productos
             </button>
           </div>
         </div>

@@ -45,7 +45,7 @@
         "slug": "/productos/producto-1"
     },
     {
-        "ID_productor": 1002,
+        "ID_productor": 1003,
         "Nombre": "Figura Spy x Family - Yor Forger",
         "Descripción": "Figura coleccionable de 30 cm",
         "caracteristicas": [
@@ -64,7 +64,7 @@
         "slug": "/productos/producto-1"
     },
     {
-        "ID_productor": 1003,
+        "ID_productor": 1002,
         "Nombre": "Samsung Galaxy S23",
         "Descripción": "Smartphone Android con 256GB",
         "caracteristicas": [

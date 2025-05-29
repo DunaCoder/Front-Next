@@ -3,21 +3,13 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// Datos de ejemplo (puedes reemplazar con tu JSON o API)
-// export type product = {
-//   nombre: string;
-//   precio: number;
-//   categoria: string;
-//   imagen: string;
-//   id: number;
-//   id_proveedor: number;
-// };
-
 type Props = {
   products?: Producto[];
   error?: string;}
 
 const Products = ({products = [],  error} : Props) => {
+                                                                                                                                                                                                                                                                
+  // Manejo de estado de carga y error
   if (error) return <div className="text-red-500">{error}</div>;
 
   // Verificación adicional para arrays vacíos o undefined
@@ -39,22 +31,16 @@ const Products = ({products = [],  error} : Props) => {
   >
     <Link href={`/productos/${product.id}`} className="block h-full w-full">
       {/* Contenedor de la imagen con relación de aspecto */}
-      <div className="relative m-2  transition-transform duration-300 group-hover:scale-105 aspect-square">
-        <Image
-          src={product.imagen}
-          alt={product.nombre}
-          fill
-          className="object-contain" // Cambiado a object-contain
-          quality={85}
-        />
-
-        {/* Badge de descuento (opcional) */}
-        {/* {product.discount && (
-          <div className="absolute right-2 top-2 rounded-full bg-red-500 px-3 py-1 text-xs font-bold text-white">
-            -{product.discount}%
-          </div>
-        )} */}
-      </div>
+      <div className="relative m-2 h-64 w-full"> {/* Por ejemplo, una altura fija */}
+      <Image
+        src={product.imagen}
+        alt={product.nombre}
+        // Proporciona dimensiones concretas
+        fill // Ajusta este valor para mantener el aspecto
+        className="object-contain"
+        quality={85}
+      />
+    </div>
 
       {/* Información del producto */}
       <div className="p-4 bg-white">

@@ -5,7 +5,7 @@ export type Producto = {
   nombre: string;
   precio: number;
   descripcion: string;
-  caracteristicas: string;
+  caracteristicas: string[];
   stock: number;
   categoria: string;
   imagen: string;
@@ -33,4 +33,9 @@ const fetcher =  async <T>(endpoint: string): Promise<T>  => {
 
 export const getProductos = async (): Promise<Producto[]> => {
   return fetcher<Producto[]>(PRODUCTOS_URL);
+}
+
+// Agrega al final de lib/api.ts
+export const getProductoById = async (id: string | number): Promise<Producto> => {
+  return fetcher<Producto>(`${PRODUCTOS_URL}${id}/`);
 }

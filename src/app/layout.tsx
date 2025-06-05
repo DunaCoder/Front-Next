@@ -1,8 +1,11 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "./components/Nav";
 import Footer from './components/Footer';
+// import { AppProps } from "next/app"; // <--- ESTO NO ES NECESARIO EN APP ROUTER, PUEDES QUITARLO
+import { CartProvider } from "@/context/CartContext"; // Asegúrate que esta ruta es correcta (usando alias @)
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,15 +32,19 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div>
-          <Nav></Nav>
-        </div>
-        <main>
-        {children}
-        </main>
-        <footer>
-          <Footer></Footer>
-        </footer>
+        {/* ¡Aquí es donde envuelves todo el contenido de React! */}
+        {/* El CartProvider debe estar dentro del <body> */}
+        <CartProvider>
+          <div>
+            <Nav></Nav> {/* Nav probablemente necesitará acceder al carrito */}
+          </div>
+          <main>
+            {children} {/* Todas tus páginas se renderizan aquí */}
+          </main>
+          <footer>
+            <Footer></Footer> {/* Footer también podría necesitar acceso al carrito */}
+          </footer>
+        </CartProvider>
       </body>
     </html>
   );

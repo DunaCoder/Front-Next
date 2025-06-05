@@ -1,15 +1,20 @@
+// app/components/Nav.tsx
 'use client'
 import React, { useState } from 'react'
 import { CiSearch } from "react-icons/ci";
 import { FiShoppingCart } from "react-icons/fi";
-import { FaUser, FaChevronDown } from "react-icons/fa";
+import { FaUser, FaChevronDown, FaTimesCircle } from "react-icons/fa"; // Importa FaTimesCircle para el icono de eliminar
 import Link from 'next/link'
+// Importa removeFromCart y clearCart del contexto
+import { useCartContext } from '@/context/CartContext'; 
 
 const Nav = () => {
+  // Desestructura todas las funciones y el estado que necesitas del contexto
+  const { cartItems, removeFromCart, clearCart } = useCartContext(); 
+
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  
   // Datos de ejemplo para categorías
   const categories = [
     { name: 'Electrónica', subcategories: ['Smartphones', 'Laptops', 'Audio'] },
@@ -18,17 +23,11 @@ const Nav = () => {
     { name: 'Deportes', subcategories: ['Fútbol', 'Fitness', 'Camping'] },
   ]
 
-    const cartItems = [
-    { id: 1, name: 'Zapatos Deportivos', price: 59.99, quantity: 1, image: 'https://via.placeholder.com/80' },
-    { id: 2, name: 'Camiseta Premium', price: 29.99, quantity: 2, image: 'https://via.placeholder.com/80' },
-  ];
-
   return (
     <nav className="bg-black relative">
       <div className="mx-auto max-w-7xl py-5 px-4 sm:px-6">
         {/* Primera fila */}
         <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
-          
           <Link href="/" className="text-white text-2xl font-bold hover:text-gray-300 transition-colors">
             BrandStore
           </Link>
@@ -53,32 +52,60 @@ const Nav = () => {
             </Link>
             
             <button 
-            onMouseEnter={() => setIsCartOpen (true)}
-            onClick={() => setIsCartOpen(!isCartOpen)}
-            className="p-2.5 text-white hover:bg-gray-800 rounded-md transition-colors relative flex items-center gap-1">
+              onMouseEnter={() => setIsCartOpen(true)}
+              onClick={() => setIsCartOpen(!isCartOpen)}
+              className="p-2.5 text-white hover:bg-gray-800 rounded-md transition-colors relative flex items-center gap-1">
               <FiShoppingCart className="text-xl" />
               <span className="hidden sm:inline">Carrito</span>
               <span className="absolute -top-1 -right-1 bg-red-500 text-xs w-5 h-5 rounded-full flex items-center justify-center">
-                3
+                {cartItems.length}
               </span>
             </button>
           </div>
         </div>
-{/* pestaña de carrito */}
-{isCartOpen && (
-  <div className="absolute right-0 bg-white p-4 text-black">
-    <h3>Carrito de Compras</h3>
-    <ul>
-      {cartItems.map((item) => (
-        <li key={item.id}>
-          {item.name} - ${item.price}
-        </li>
-      ))}
-    </ul>
-  </div>
-)}
-  
 
+        {/* Pestaña de carrito (desplegable) */}
+        {isCartOpen && (
+          <div 
+            onMouseLeave={() => setIsCartOpen(false)}
+            className="absolute z-50 right-0 mt-2 w-72 bg-white rounded-md shadow-lg p-4 text-black border border-gray-200"
+          >
+            <h3 className="text-lg font-semibold mb-2">Carrito de Compras</h3>
+            {cartItems.length === 0 ? (
+              <p className="text-gray-600">El carrito está vacío.</p>
+            ) : (
+              <> {/* Fragmento para agrupar elementos */}
+                <ul>
+                  {cartItems.map((item) => (
+                    <li key={item.id} className="flex justify-between items-center py-1 border-b border-gray-100 last:border-b-0">
+                      <span className="text-sm font-medium">{item.nombre} ({item.quantity})</span>
+                      <span className="text-sm text-gray-700">${item.precio.toFixed(2)}</span>
+                      {/* Botón para eliminar un producto individual */}
+                      <button 
+                        onClick={() => removeFromCart(item.id)} // Llama a removeFromCart con el ID del producto
+                        className="ml-2 text-red-500 hover:text-red-700"
+                        title="Eliminar producto"
+                      >
+                        <FaTimesCircle className="text-base" /> {/* Icono de 'X' o círculo con cruz */}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+                {/* Botón para vaciar todo el carrito */}
+                <button
+                  onClick={clearCart} // Llama a clearCart (no necesita argumentos)
+                  className="mt-4 w-full block text-center bg-red-500 text-white py-2 rounded-md hover:bg-red-600 transition-colors"
+                >
+                  Vaciar Carrito
+                </button>
+              </>
+            )}
+            <Link href="/carrito" className="mt-4 w-full block text-center bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors">
+              Ver Carrito Completo
+            </Link>
+          </div>
+        )}
+        
         {/* Barra de categorías */}
         <div className="mt-4 border-t border-gray-800 pt-4">
           <div className="flex items-center justify-center gap-6 flex-wrap">
@@ -98,8 +125,8 @@ const Nav = () => {
               {isCategoriesOpen && (
                 <div onMouseEnter={() => setIsCategoriesOpen(true)} 
                 onMouseLeave={() => setIsCategoriesOpen(false)}
-                className="absolute z-50 top-full left-0 sm:w-[800px] w-[200px]  bg-black border border-gray-800 rounded-lg shadow-xl p-6 mt-2">
-                  <div className="grid  sm:grid-cols-2 grid-cols-1 gap-6">
+                className="absolute z-50 top-full left-0 sm:w-[800px] w-[200px] bg-black border border-gray-800 rounded-lg shadow-xl p-6 mt-2">
+                  <div className="grid sm:grid-cols-2 grid-cols-1 gap-6">
                     {categories.map((category) => (
                       <div key={category.name} className="group">
                         <h3 className="text-white font-medium mb-2 border-b border-gray-700 pb-1">
@@ -142,4 +169,4 @@ const Nav = () => {
   )
 }
 
-export default Nav
+export default Nav;

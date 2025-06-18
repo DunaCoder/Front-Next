@@ -6,6 +6,7 @@ import Nav from "./components/Nav";
 import Footer from './components/Footer';
 // import { AppProps } from "next/app"; // <--- ESTO NO ES NECESARIO EN APP ROUTER, PUEDES QUITARLO
 import { CartProvider } from "@/context/CartContext"; // Asegúrate que esta ruta es correcta (usando alias @)
+import ScrollToTopButton from "./components/ScrollToTopButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,6 +41,7 @@ export default function RootLayout({
           </div>
           <main>
             {children} {/* Todas tus páginas se renderizan aquí */}
+            <ScrollToTopButton></ScrollToTopButton>
           </main>
           <footer>
             <Footer></Footer> {/* Footer también podría necesitar acceso al carrito */}

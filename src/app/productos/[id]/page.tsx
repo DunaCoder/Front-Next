@@ -1,73 +1,60 @@
 'use client';
 import Image from 'next/image';
-import { useParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { Producto } from '../../../../lib/api';
+import {  useEffect,useState } from 'react';
+import { getProductoById } from '../../../../lib/api';
+import{ useCartContext } from '../../../context/CartContext';
+import Link from 'next/link';
+// import Link from 'next/link';
 
-// Define el tipo de producto directamente aquí
-type Producto = {
-  id: number;
-  nombre: string;
-  precio: number;
-  descripcion: string;
-  caracteristicas: string[];
-  stock: number;
-  categoria: string;
-  imagen: string;
-  id_proveedor: number;
-};
-
-const ProductDisplay = () => {
-  const { id } = useParams();
+export default function ProductPage({ params }: { params: { id: string } }) {
   const [product, setProduct] = useState<Producto | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { addToCart } = useCartContext();
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        // Extraer el ID correctamente
-        const productId = Array.isArray(id) ? id[0] : id;
-        
-        // Llamada DIRECTA a tu API
-        const response = await fetch(`http://127.0.0.1:8000/productos/${productId}`);
-        
-        if (!response.ok) {
-          throw new Error('Producto no encontrado');
-        }
-        
-        const data = await response.json();
+        const data = await getProductoById(params.id);
         setProduct(data);
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      } catch (error) {
-        setError('Error al cargar el producto');
+      } catch (err) {
+        setError('Producto no encontrado');
+        console.error(err);
       } finally {
         setLoading(false);
       }
     };
-    
+
     fetchProduct();
-  }, [id]);
+  }, [params.id]);
 
   if (loading) {
-    return <div className="text-center p-8">Cargando producto...</div>;
+    return (
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div className="text-xl">Cargando producto...</div>
+      </div>
+    );
   }
 
   if (error) {
     return (
-      <div className="text-red-500 p-4 text-center">
-        {error}
-        <br />
-        Por favor, inténtalo de nuevo o contacta al soporte.
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div className="text-red-500 text-xl">{error}</div>
       </div>
     );
   }
 
   if (!product) {
-    return <div className="text-center p-8">Producto no encontrado</div>;
+    return (
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div className="text-gray-500 text-xl">Producto no encontrado</div>
+      </div>
+    );
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12">
+     <div className="min-h-screen bg-gray-100 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Sección de la imagen */}
@@ -133,6 +120,7 @@ const ProductDisplay = () => {
 
             {/* Botón de compra */}
             <button
+              onClick={() => addToCart(product)}
               className={`w-full py-3 px-6 rounded-lg font-semibold transition duration-300 ${
                 product.stock > 0
                   ? 'bg-red-600 text-white hover:bg-red-700'
@@ -142,11 +130,14 @@ const ProductDisplay = () => {
             >
               {product.stock > 0 ? 'Añadir al carrito' : 'Producto agotado'}
             </button>
+            <Link href={`/colecion`} className="flex-1">
+                    <button  className="w-full my-5 py-3 px-6 rounded-lg font-semibold transition duration-300 bg-black text-white hover:bg-white hover:text-black">
+                      Ver Detalles
+                    </button>
+                  </Link>
           </div>
         </div>
       </div>
     </div>
   );
-};
-
-export default ProductDisplay;
+}

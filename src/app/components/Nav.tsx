@@ -5,6 +5,7 @@ import { CiSearch } from "react-icons/ci";
 import { FiShoppingCart } from "react-icons/fi";
 import { FaUser, FaChevronDown, FaTimesCircle } from "react-icons/fa"; // Importa FaTimesCircle para el icono de eliminar
 import Link from 'next/link'
+import Image from 'next/image';
 // Importa removeFromCart y clearCart del contexto
 import { useCartContext } from '@/context/CartContext'; 
 
@@ -25,7 +26,7 @@ const Nav = () => {
 
   return (
     <nav className="bg-black relative">
-      <div className="mx-auto max-w-7xl py-5 px-4 sm:px-6">
+      <div className="mx-auto max-w-7xl py-5 px-4 sm:px-6 ">
         {/* Primera fila */}
         <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
           <Link href="/" className="text-white text-2xl font-bold hover:text-gray-300 transition-colors">
@@ -68,16 +69,23 @@ const Nav = () => {
         {isCartOpen && (
           <div 
             onMouseLeave={() => setIsCartOpen(false)}
-            className="absolute z-50 right-0 mt-2 w-72 bg-white rounded-md shadow-lg p-4 text-black border border-gray-200"
+            className="absolute z-50 right-0  md:w-auto w-full bg-white rounded-md shadow-lg p-4 text-black border border-gray-200"
           >
-            <h3 className="text-lg font-semibold mb-2">Carrito de Compras</h3>
+            <h3 className="text-lg font-semibold ">Carrito de Compras</h3>
             {cartItems.length === 0 ? (
               <p className="text-gray-600">El carrito está vacío.</p>
             ) : (
               <> {/* Fragmento para agrupar elementos */}
                 <ul>
                   {cartItems.map((item) => (
-                    <li key={item.id} className="flex justify-between items-center py-1 border-b border-gray-100 last:border-b-0">
+                    <li key={item.id} className="flex justify-between items-center p-5 border-b border-gray-100 last:border-b-0">
+                    <Image
+                        src={item.imagen}
+                        alt={item.nombre}
+                        width={80} // Corresponde a w-16 (16 * 4 = 64px si tu base es 1rem = 16px)
+                        height={80} // Corresponde a h-16
+                        className="object-cover rounded-md mx-2" // Tailwind CSS para object-cover y rounded-md
+                      />
                       <span className="text-sm font-medium">{item.nombre} ({item.quantity})</span>
                       <span className="text-sm text-gray-700">${item.precio.toFixed(2)}</span>
                       {/* Botón para eliminar un producto individual */}

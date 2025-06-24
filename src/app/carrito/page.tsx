@@ -4,7 +4,6 @@ import { useCartContext } from '@/context/CartContext';
 import Image from "next/image";
 
 
-
 export default function Page() {
     // Desestructura todas las funciones y el estado que necesitas del contexto
       const { cartItems, clearCart } = useCartContext(); 

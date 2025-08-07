@@ -7,7 +7,12 @@ import{ useCartContext } from '../../../context/CartContext';
 import Link from 'next/link';
 // import Link from 'next/link';
 
-export default function ProductPage({ params }: { params: { id: string } }) {
+interface ProductPageProps {
+  params: {
+    id: string;
+  };
+}
+export default function ProductPage({ params }: ProductPageProps) {
   const [product, setProduct] = useState<Producto | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

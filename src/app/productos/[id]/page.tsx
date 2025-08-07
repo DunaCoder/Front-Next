@@ -1,24 +1,18 @@
 'use client';
 import Image from 'next/image';
 import { Producto } from '../../../../lib/api';
-import { useEffect, useState } from 'react';
+import {  useEffect,useState } from 'react';
 import { getProductoById } from '../../../../lib/api';
-import { useCartContext } from '../../../context/CartContext';
+import{ useCartContext } from '../../../context/CartContext';
 import Link from 'next/link';
-
-
+// import Link from 'next/link';
 
 interface ProductPageProps {
-
   params: {
     id: string;
   };
 }
-
-
-export default async function ProductPage({ params }: ProductPageProps) {
-
-
+export default function ProductPage({ params }: ProductPageProps) {
   const [product, setProduct] = useState<Producto | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -27,7 +21,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        
         const data = await getProductoById(params.id);
         setProduct(data);
       } catch (err) {
@@ -66,7 +59,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12">
+     <div className="min-h-screen bg-gray-100 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Sección de la imagen */}
@@ -143,10 +136,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
               {product.stock > 0 ? 'Añadir al carrito' : 'Producto agotado'}
             </button>
             <Link href={`/colecion`} className="flex-1">
-              <button className="w-full my-5 py-3 px-6 rounded-lg font-semibold transition duration-300 bg-black text-white hover:bg-white hover:text-black">
-                Ver Detalles
-              </button>
-            </Link>
+                    <button  className="w-full my-5 py-3 px-6 rounded-lg font-semibold transition duration-300 bg-black text-white hover:bg-white hover:text-black">
+                      Ver Detalles
+                    </button>
+                  </Link>
           </div>
         </div>
       </div>

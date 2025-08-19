@@ -13,7 +13,7 @@ export type Producto = {
   id_proveedor: number;
 }
 
-const API_URL = 'http://127.0.0.1:8000'; 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 const PRODUCTOS_URL = '/productos/'; // Cambia esto a la URL de tu API
 
 const fetcher =  async <T>(endpoint: string): Promise<T>  => {

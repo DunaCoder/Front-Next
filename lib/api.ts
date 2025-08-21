@@ -23,10 +23,10 @@ const fetcher =  async <T>(endpoint: string): Promise<T>  => {
        throw new Error(`Error ${response.status}: ${response.statusText}`);
     }
     const data = await response.json();
-    console.log('Respuesta de la API:', data);
+    // console.log('Respuesta de la API:', data);
     return data;
   } catch (error) {
-    console.error('Error en la solicitud a', endpoint, ':', error);
+    // console.error('Error en la solicitud a', endpoint, ':', error);
     throw error;
   }
 }
